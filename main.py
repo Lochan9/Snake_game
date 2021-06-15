@@ -1,6 +1,12 @@
 import pygame
 x=pygame.init()
 
+
+#colors
+white = (255,255,255)
+red = (255,0,0)
+black=(0,0,0)
+
 #creating window    
 gamewindow = pygame.display.set_mode((1200,500))
 pygame.display.set_caption("MY First Game")
