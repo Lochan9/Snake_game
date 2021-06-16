@@ -21,18 +21,22 @@ while not exit_game:
         if event.type == pygame.QUIT:
             exit_game =True
 
-        if event.type == pygame.KEYDOWN:
+         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
-                snake_x = snake_x + 15
+                velocity_x = 10
+                velocity_y = 0
 
             if event.key == pygame.K_LEFT:
-                snake_x = snake_x - 15
+                velocity_x = -10
+                velocity_y = 0
 
             if event.key == pygame.K_UP:
-                snake_y = snake_y - 15
+                velocity_y = -10
+                velocity_x =0
             
             if event.key == pygame.K_DOWN:
-                snake_y = snake_y + 15
+                velocity_y = 10
+                velocity_x = 0
                 
     Game_window.fill(white)
    pygame.display.update()
