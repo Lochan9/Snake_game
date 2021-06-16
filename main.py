@@ -19,11 +19,20 @@ game_over = False
 while not exit_game:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            exit_game = True
+            exit_game =True
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
-                print("You have pressed right arrow key")
+                snake_x = snake_x + 15
+
+            if event.key == pygame.K_LEFT:
+                snake_x = snake_x - 15
+
+            if event.key == pygame.K_UP:
+                snake_y = snake_y - 15
+            
+            if event.key == pygame.K_DOWN:
+                snake_y = snake_y + 15
                 
     Game_window.fill(white)
    pygame.display.update()
