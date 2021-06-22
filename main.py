@@ -42,11 +42,16 @@ def gameloop():
     snake_velocity = 5
     snk_List =[]
     snk_length = 1
+    with open("highscore.txt","r") as f:
+        highscore = f.read()
+
     
     while not exit_game:
         if game_over:
+            with open("highscore.txt","w") as f:
+                f.write(str(highscore))
             Game_window.fill(white)
-            text_screen("Game over",red,100,250)
+            text_screen("Game over,Press enter to restart",red,100 ,200)
         
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -77,6 +82,10 @@ def gameloop():
                         velocity_y = snake_velocity
                         velocity_x = 0
 
+                    if event.key == pygame.K_q:
+                        score += 5
+                        snk_List.append(head)
+
             #Snake velocity    
             snake_x += velocity_x
             snake_y += velocity_y
@@ -87,9 +96,11 @@ def gameloop():
                 food_x = random.randint(0,800/2)
                 food_y = random.randint(0,500/2)
                 snk_length +=3
+                if score>int(highscore):
+                    highscore = score
             Game_window.fill(white)
             #score card
-            text_screen("Pts:- "+str(score),red,5,5)
+            text_screen("Pts:- "+str(score) + " HS " + str(highscore),red,5,5)
             # food
             x=pygame.draw.rect(Game_window,red,[food_x,food_y,food_size,food_size])
             #this is when the snake eat apple and grows
@@ -100,10 +111,13 @@ def gameloop():
             if len(snk_List)>snk_length:
                 del snk_List[0]
 
+            if head in snk_List[:-1]:
+                game_over = True
+
             # boundaries 
             if snake_x < 0 or snake_x> 800 or snake_y < 0 or snake_y>500:
                 game_over = True
-                print("gameover")
+                print("gameover,press enter to restart")
             #y=pygame.draw.rect(Game_window,black,[snake_x,snake_y,snake_size,snake_size])
             plot_snake(Game_window,black,snk_List,snake_size)
         pygame.display.update()
