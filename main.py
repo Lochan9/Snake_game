@@ -1,5 +1,6 @@
 import pygame
 import random
+import os
 x=pygame.init()
 
 #colors
@@ -66,17 +67,11 @@ def gameloop():
     snake_velocity = 5
     snk_List =[]
     snk_length = 1
-    
-    
-     #if file exist "highscore"
+    #if file exist "highscore"
+
     if (not os.path.exists("highscore")):
         with open("highscore.txt","w") as f:
             f.write("0")
-            
-            
-            
-    with open("highscore.txt","r") as f:
-        highscore = f.read()
     with open("highscore.txt","r") as f:
         highscore = f.read()
 
