@@ -4,8 +4,11 @@ x=pygame.init()
 
 #colors
 white = (255,255,255)
-red = (255,0,0)
+red = (225,0,0)
 black=(0,0,0)
+unknown = (223,220,225)
+
+
 
 
 #create window
@@ -28,7 +31,7 @@ def plot_snake(Game_window,color,snk_List,snake_size):
 def welcome():
     exit_game = False
     while not exit_game:
-        Game_window.fill(white)
+        Game_window.fill(red)
         text_screen(" Welcome to Snakes",black,220,200)
         text_screen(" press space to play",black,230,250)
         for event in pygame.event.get():
@@ -119,7 +122,7 @@ def gameloop():
                 snk_length +=3
                 if score>int(highscore):
                     highscore = score
-            Game_window.fill(white)
+            Game_window.fill(unknown)
             #score card
             text_screen("Pts:- "+str(score) + " HS " + str(highscore),red,5,5)
             # food
@@ -139,7 +142,7 @@ def gameloop():
             if snake_x < 0 or snake_x> 800 or snake_y < 0 or snake_y>500:
                 game_over = True
                 print("gameover,press enter to restart")
-            #y=pygame.draw.rect(Game_window,black,[snake_x,snake_y,snake_size,snake_size])
+            #y=pygame.draw.rect(Game_window,red,[snake_x,snake_y,snake_size,snake_size])
             plot_snake(Game_window,black,snk_List,snake_size)
         pygame.display.update()
         clock.tick(45)
