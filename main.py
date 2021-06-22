@@ -7,6 +7,7 @@ white = (255,255,255)
 red = (255,0,0)
 black=(0,0,0)
 
+
 #create window
 Game_window = pygame.display.set_mode((800,500))
 pygame.display.set_caption("MY First Game")
@@ -23,6 +24,26 @@ def text_screen(text,color,x,y):
 def plot_snake(Game_window,color,snk_List,snake_size):
     for x,y in snk_List:
         pygame.draw.rect(Game_window,color,[x,y,snake_size,snake_size])
+
+def welcome():
+    exit_game = False
+    while not exit_game:
+        Game_window.fill(white)
+        text_screen(" Welcome to Snakes",black,220,200)
+        text_screen(" press space to play",black,230,250)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit_game = True
+            
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    gameloop()
+
+
+        pygame.display.update()
+        pygame.time.Clock()
+
+
 #loop
 def gameloop():
     #game specific variable
@@ -121,8 +142,9 @@ def gameloop():
             #y=pygame.draw.rect(Game_window,black,[snake_x,snake_y,snake_size,snake_size])
             plot_snake(Game_window,black,snk_List,snake_size)
         pygame.display.update()
-        clock.tick(fps)
+        clock.tick(45)
 
     pygame.quit()
     quit()
-gameloop()
+welcome()
+
